@@ -158,4 +158,72 @@ ul li {
     margin: 1rem;
     padding: 1.25rem;
   }
+
+  /* Filter + Search Controls */
+.project-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+#searchBar {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-width: 400px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.filters button {
+  padding: 0.5rem 1rem;
+  background-color: #eee;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.filters button:hover {
+  background-color: #ddd;
+}
+
+.filters .active {
+  background-color: #007acc;
+  color: #fff;
+}
+
+/* Pagination (optional, for next step) */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.pagination button {
+  padding: 0.5rem 1rem;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.pagination button.active {
+  background-color: #007acc;
+  color: #fff;
+}
+
+.pagination button:hover:not(.active) {
+  background-color: #ddd;
+}
+
 }
