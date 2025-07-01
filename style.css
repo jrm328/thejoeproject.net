@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 /* General Reset & Layout */
@@ -60,7 +59,7 @@ main {
   padding: 2rem;
   margin: 2rem auto;
   border-radius: 12px;
-  max-width: 900px;
+  max-width: 1100px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
 }
 
@@ -93,6 +92,50 @@ ul {
 
 ul li {
   margin-bottom: 0.5rem;
+}
+
+/* Projects Page Card Grid */
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease;
+}
+
+.project:hover {
+  transform: translateY(-4px);
+}
+
+.project img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.project h2 {
+  font-size: 1.4rem;
+  margin-top: 0;
+}
+
+.project a {
+  color: #007acc;
+  text-decoration: underline;
+}
+
+.project a:hover {
+  text-decoration: none;
 }
 
 /* Responsive Styles */
