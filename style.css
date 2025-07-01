@@ -8,7 +8,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Moonshine', sans-serif;
-    background: url('assets/images/blue-bg.jpg') repeat;
+    background: url('assets/images/blueprint-bg.jpg') repeat;
     color: white;
     text-align: center;
 }
@@ -20,4 +20,25 @@ body {
 .logo {
     max-width: 300px;
     margin-bottom: 30px;
+}
+
+
+nav.navbar {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    text-align: center;
+    font-family: 'Moonshine', sans-serif;
+}
+
+nav.navbar a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+}
+
+nav.navbar a:hover {
+    border-bottom: 2px solid white;
 }
