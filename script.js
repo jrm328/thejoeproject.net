@@ -1,14 +1,16 @@
-// script.js for loading + filtering projects with search and pagination
+// script.js — Loads and filters project cards with search + pagination
 
 document.addEventListener('DOMContentLoaded', () => {
   const searchBar = document.getElementById('searchBar');
   const filterButtons = document.querySelectorAll('.filters button');
   const projectContainer = document.getElementById('project-list');
+  const pagination = document.getElementById('pagination');
   const projectsPerPage = 6;
+
   let currentPage = 1;
   let allProjects = [];
 
-  // Step 1: Load JSON data and create cards
+  // Load project data from remote JSON
   async function loadProjects() {
     try {
       const res = await fetch('https://raw.githubusercontent.com/jrm328/thejoeproject-info/gh-pages/assets/projects.json');
@@ -20,14 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Step 2: Render filtered + paginated project cards
+  // Render filtered + paginated project cards
   function renderProjects() {
     const query = searchBar.value.toLowerCase();
     const activeFilter = document.querySelector('.filters .active')?.dataset.filter || 'all';
 
     const filtered = allProjects.filter(project => {
-      const matchesTag = activeFilter === 'all' || project.tags.includes(activeFilter);
-      const matchesSearch = project.title.toLowerCase().includes(query) || project.summary.toLowerCase().includes(query);
+      const tags = project.tags || [];
+      const matchesTag = activeFilter === 'all' || tags.includes(activeFilter);
+      const matchesSearch =
+        project.title.toLowerCase().includes(query) ||
+        project.summary.toLowerCase().includes(query);
       return matchesTag && matchesSearch;
     });
 
@@ -36,24 +41,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const paginated = filtered.slice(start, end);
 
     projectContainer.innerHTML = paginated.map(project => `
-      <div class="project-card" data-tags="${project.tags.join(',')}">
+      <div class="project-card" data-tags="${(project.tags || []).join(',')}">
         <img src="${project.thumbnail}" alt="${project.title}">
         <h3>${project.title}</h3>
         <p>${project.summary}</p>
-        <a href="${project.url}" target="_blank">Read More</a>
+        <a href="${project.url}" target="_blank" class="read-more">View Project</a>
       </div>
     `).join('');
 
     renderPagination(filtered.length);
   }
 
-  // Step 3: Render pagination buttons
+  // Render pagination buttons
   function renderPagination(totalItems) {
     const pageCount = Math.ceil(totalItems / projectsPerPage);
-    const pagination = document.getElementById('pagination');
-    if (!pagination) return;
-
     pagination.innerHTML = '';
+
+    if (pageCount <= 1) return;
 
     for (let i = 1; i <= pageCount; i++) {
       const btn = document.createElement('button');
@@ -67,12 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Event listeners
+  // Event: Search input
   searchBar.addEventListener('input', () => {
     currentPage = 1;
     renderProjects();
   });
 
+  // Event: Filter buttons
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
       filterButtons.forEach(btn => btn.classList.remove('active'));
@@ -82,6 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Kick things off
+  // Init
   loadProjects();
 });
