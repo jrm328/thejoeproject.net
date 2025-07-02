@@ -1,6 +1,7 @@
+/* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
-/* General Reset & Layout */
+/* Reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,7 +16,7 @@ body {
   line-height: 1.6;
 }
 
-/* Logo Styling */
+/* Logo */
 .logo {
   width: 64px;
   height: 64px;
@@ -23,7 +24,7 @@ body {
   margin-right: 12px;
 }
 
-/* Header & Navigation */
+/* Header */
 header {
   position: sticky;
   top: 0;
@@ -34,6 +35,7 @@ header {
   background: rgba(255, 255, 255, 0.95);
   padding: 1rem 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
 }
 
 .navbar {
@@ -59,7 +61,7 @@ main {
   padding: 2rem;
   margin: 2rem auto;
   border-radius: 12px;
-  max-width: 1100px;
+  max-width: 900px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
 }
 
@@ -94,22 +96,19 @@ ul li {
   margin-bottom: 0.5rem;
 }
 
-/* Projects Page Card Grid */
-.project-list {
+/* Project Grid */
+.project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
 
 .project {
-  background-color: #f9f9f9;
-  padding: 1.5rem;
+  background: #f9f9f9;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease;
 }
 
@@ -119,23 +118,70 @@ ul li {
 
 .project img {
   width: 100%;
-  height: auto;
   border-radius: 8px;
-  margin: 1rem 0;
+  margin-bottom: 1rem;
 }
 
-.project h2 {
-  font-size: 1.4rem;
-  margin-top: 0;
+/* Project Controls */
+.project-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
-.project a {
+.project-controls input[type="text"] {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filters button {
+  background: #fff;
+  border: 2px solid #007acc;
   color: #007acc;
-  text-decoration: underline;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-.project a:hover {
-  text-decoration: none;
+.filters button.active,
+.filters button:hover {
+  background: #007acc;
+  color: #fff;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pagination button {
+  padding: 0.5rem 0.75rem;
+  background: #007acc;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.pagination button.active {
+  background: #005fa3;
 }
 
 /* Responsive Styles */
@@ -159,71 +205,7 @@ ul li {
     padding: 1.25rem;
   }
 
-  /* Filter + Search Controls */
-.project-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-#searchBar {
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  max-width: 400px;
-}
-
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.filters button {
-  padding: 0.5rem 1rem;
-  background-color: #eee;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.2s ease;
-}
-
-.filters button:hover {
-  background-color: #ddd;
-}
-
-.filters .active {
-  background-color: #007acc;
-  color: #fff;
-}
-
-/* Pagination (optional, for next step) */
-.pagination {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.pagination button {
-  padding: 0.5rem 1rem;
-  background-color: #f0f0f0;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.pagination button.active {
-  background-color: #007acc;
-  color: #fff;
-}
-
-.pagination button:hover:not(.active) {
-  background-color: #ddd;
-}
-
+  .project-controls {
+    flex-direction: column;
+  }
 }
