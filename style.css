@@ -82,6 +82,49 @@ main {
   box-shadow: var(--shadow);
 }
 
+/* Cards */
+.project-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+}
+
+.project-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.project-card h3 {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.project-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.project-card a {
+  margin-top: auto;
+  font-weight: bold;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.project-card a:hover {
+  text-decoration: underline;
+}
+
 @media (min-width: 1024px) {
   main {
     max-width: 1080px;
