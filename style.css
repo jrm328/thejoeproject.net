@@ -1,6 +1,18 @@
 /* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
+/* CSS Variables */
+:root {
+  --accent: #007acc;
+  --accent-dark: #005fa3;
+  --text-main: #000;
+  --text-muted: #555;
+  --bg-light: #fff;
+  --bg-card: #f9f9f9;
+  --radius: 12px;
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
 /* Reset */
 * {
   box-sizing: border-box;
@@ -8,12 +20,17 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   background: url('assets/images/blue-bg.jpg') no-repeat center center fixed;
   background-size: cover;
-  color: #000;
+  color: var(--text-main);
   line-height: 1.6;
+  animation: fadeIn 0.4s ease-in-out;
 }
 
 /* Logo */
@@ -34,7 +51,7 @@ header {
   justify-content: space-between;
   background: rgba(255, 255, 255, 0.95);
   padding: 1rem 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
   flex-wrap: wrap;
 }
 
@@ -46,29 +63,35 @@ header {
 
 .navbar a {
   text-decoration: none;
-  color: #000;
+  color: var(--text-main);
   font-weight: 600;
   transition: color 0.2s ease-in-out;
 }
 
 .navbar a:hover {
-  color: #007acc;
+  color: var(--accent);
 }
 
 /* Main Content */
 main {
-  background-color: #fff;
+  background-color: var(--bg-light);
   padding: 2rem;
   margin: 2rem auto;
-  border-radius: 12px;
+  border-radius: var(--radius);
   max-width: 900px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
+}
+
+@media (min-width: 1024px) {
+  main {
+    max-width: 1080px;
+  }
 }
 
 /* Typography */
 h1, h2 {
   font-family: 'Moonshine', cursive;
-  color: #000;
+  color: var(--text-main);
 }
 
 h1 {
@@ -96,6 +119,16 @@ ul li {
   margin-bottom: 0.5rem;
 }
 
+main a {
+  color: var(--accent);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+main a:hover {
+  color: var(--accent-dark);
+}
+
 /* Project Grid */
 .project-grid {
   display: grid;
@@ -105,11 +138,14 @@ ul li {
 }
 
 .project {
-  background: #f9f9f9;
-  border-radius: 12px;
+  background: var(--bg-card);
+  border-radius: var(--radius);
   padding: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
   transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .project:hover {
@@ -145,20 +181,22 @@ ul li {
 }
 
 .filters button {
-  background: #fff;
-  border: 2px solid #007acc;
-  color: #007acc;
+  background: var(--bg-light);
+  border: 2px solid var(--accent);
+  color: var(--accent);
   padding: 0.5rem 1rem;
   border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
 
 .filters button.active,
 .filters button:hover {
-  background: #007acc;
+  background: var(--accent);
   color: #fff;
+  transform: scale(1.03);
+  box-shadow: 0 0 4px var(--accent);
 }
 
 /* Pagination */
@@ -172,19 +210,24 @@ ul li {
 
 .pagination button {
   padding: 0.5rem 0.75rem;
-  background: #007acc;
+  background: var(--accent);
   color: #fff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+.pagination button:hover {
+  background: var(--accent-dark);
 }
 
 .pagination button.active {
-  background: #005fa3;
+  background: var(--accent-dark);
 }
 
-/* Responsive Styles */
+/* Responsive */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -208,4 +251,10 @@ ul li {
   .project-controls {
     flex-direction: column;
   }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
